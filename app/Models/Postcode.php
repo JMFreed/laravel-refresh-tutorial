@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Postcode;
+use App\Models\Country;
 
-class Country extends Model
+class Postcode extends Model
 {
     use HasFactory;
 
-    protected $table = 'countries';
+    protected $table = 'postcodes';
 
     protected $primaryKey = 'id';
 
-    public function postcodes()
-    {
-        return $this->hasMany(Postcode::class, 'id');
-    }
+    public function country()
+   {
+       return $this->belongsTo(Country::class, 'id');
+   }
 }

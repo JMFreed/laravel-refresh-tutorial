@@ -17,6 +17,8 @@
         <li class="active"><a href="{{ route('index') }}">Home</a></li>
         <li><a href="{{ route('about') }}">About</a></li>
         <li><a href="{{ route('contact-us') }}">Contact Us</a></li>
+        <li><a href="{{ route('countries.index') }}">Countries</a></li>
+        <li><a href="{{ route('postcodes.index') }}">Postcodes</a></li>
       </ul>
       {{-- <ul class="nav navbar-nav navbar-right">
         <a href="#" class="btn btn-primary" style="margin-top:5px;">Ask A Question</a>

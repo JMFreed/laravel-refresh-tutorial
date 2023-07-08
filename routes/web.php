@@ -24,3 +24,11 @@ Route::get('/countries/view/{id}', 'App\Http\Controllers\CountryController@show'
 Route::get('/countries/edit/{id}', 'App\Http\Controllers\CountryController@edit')->name('countries.edit');
 Route::post('/countries/edit/{id}', 'App\Http\Controllers\CountryController@update')->name('countries.update');
 Route::get('/countries/delete/{id}', 'App\Http\Controllers\CountryController@destroy')->name('countries.destroy');
+
+Route::get('/postcodes', 'App\Http\Controllers\PostcodeController@index')->name('postcodes.index');
+Route::get('/postcodes/create', 'App\Http\Controllers\PostcodeController@create')->name('postcodes.create');
+Route::post('/postcodes/create', 'App\Http\Controllers\PostcodeController@store')->name('postcodes.store');
+Route::get('/postcodes/view/{id}', 'App\Http\Controllers\PostcodeController@show')->name('postcodes.show');
+Route::get('/postcodes/edit/{id}', 'App\Http\Controllers\PostcodeController@edit')->name('postcodes.edit');
+Route::post('/postcodes/edit/{id}', 'App\Http\Controllers\PostcodeController@update')->name('postcodes.update');
+Route::get('/postcodes/delete/{id}', 'App\Http\Controllers\PostcodeController@destroy')->name('postcodes.destroy');
