@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\PostcodeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,18 +20,22 @@ Route::get('/', function () { return view('index'); })->name('index');
 Route::get('/about', function () { return view('about'); })->name('about');
 Route::get('/contact-us', function () { return view('contact-us'); })->name('contact-us');
 
-Route::get('/countries', 'App\Http\Controllers\CountryController@index')->name('countries.index');
-Route::get('/countries/create', 'App\Http\Controllers\CountryController@create')->name('countries.create');
-Route::post('/countries/create', 'App\Http\Controllers\CountryController@store')->name('countries.store');
-Route::get('/countries/view/{id}', 'App\Http\Controllers\CountryController@show')->name('countries.show');
-Route::get('/countries/edit/{id}', 'App\Http\Controllers\CountryController@edit')->name('countries.edit');
-Route::post('/countries/edit/{id}', 'App\Http\Controllers\CountryController@update')->name('countries.update');
-Route::get('/countries/delete/{id}', 'App\Http\Controllers\CountryController@destroy')->name('countries.destroy');
+Route::prefix('countries')->group(function() {
+    Route::get('/', [CountryController::class, 'index'])->name('countries.index');
+    Route::get('/create', [CountryController::class, 'create'])->name('countries.create');
+    Route::post('/create', [CountryController::class, 'store'])->name('countries.store');
+    Route::get('/view/{id}', [CountryController::class, 'show'])->name('countries.show');
+    Route::get('/edit/{id}', [CountryController::class, 'edit'])->name('countries.edit');
+    Route::post('/edit/{id}', [CountryController::class, 'update'])->name('countries.update');
+    Route::get('/delete/{id}', [CountryController::class, 'destroy'])->name('countries.destroy');
+});
 
-Route::get('/postcodes', 'App\Http\Controllers\PostcodeController@index')->name('postcodes.index');
-Route::get('/postcodes/create', 'App\Http\Controllers\PostcodeController@create')->name('postcodes.create');
-Route::post('/postcodes/create', 'App\Http\Controllers\PostcodeController@store')->name('postcodes.store');
-Route::get('/postcodes/view/{id}', 'App\Http\Controllers\PostcodeController@show')->name('postcodes.show');
-Route::get('/postcodes/edit/{id}', 'App\Http\Controllers\PostcodeController@edit')->name('postcodes.edit');
-Route::post('/postcodes/edit/{id}', 'App\Http\Controllers\PostcodeController@update')->name('postcodes.update');
-Route::get('/postcodes/delete/{id}', 'App\Http\Controllers\PostcodeController@destroy')->name('postcodes.destroy');
+Route::prefix('postcodes')->group(function() {
+    Route::get('/', [PostcodeController::class, 'index'])->name('postcodes.index');
+    Route::get('/create', [PostcodeController::class, 'create'])->name('postcodes.create');
+    Route::post('/create', [PostcodeController::class, 'store'])->name('postcodes.store');
+    Route::get('/view/{id}', [PostcodeController::class, 'show'])->name('postcodes.show');
+    Route::get('/edit/{id}', [PostcodeController::class, 'edit'])->name('postcodes.edit');
+    Route::post('/edit/{id}', [PostcodeController::class, 'update'])->name('postcodes.update');
+    Route::get('/delete/{id}', [PostcodeController::class, 'destroy'])->name('postcodes.destroy');
+});

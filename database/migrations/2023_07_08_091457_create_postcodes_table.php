@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Models\Country;
+
 class CreatePostcodesTable extends Migration
 {
     /**
@@ -15,9 +17,9 @@ class CreatePostcodesTable extends Migration
     {
         Schema::create('postcodes', function (Blueprint $table) {
             $table->id();
-            $table->string('postcode')->unique();
-            $table->integer('country');
-            $table->foreign('country')->references('id')->on('countries')->onDelete('cascade');
+            $table->string('name')->unique();
+            $table->unsignedBigInteger('country_id');
+            $table->foreign('country_id')->references('id')->on('countries');
             $table->timestamps();
         });
     }

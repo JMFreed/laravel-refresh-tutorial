@@ -16,7 +16,7 @@ class Postcode extends Model
     protected $primaryKey = 'id';
 
     public function country()
-   {
-       return $this->belongsTo(Country::class, 'id');
-   }
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
 }

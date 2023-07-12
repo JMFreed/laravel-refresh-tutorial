@@ -17,6 +17,6 @@ class Country extends Model
 
     public function postcodes()
     {
-        return $this->hasMany(Postcode::class, 'id');
+        return $this->hasMany(Postcode::class);
     }
 }

@@ -15,7 +15,7 @@ class PostcodeController extends Controller
      */
     public function index()
     {
-        $postcodes = Postcode::orderBy('postcode', 'asc')->paginate(5);
+        $postcodes = Postcode::orderBy('name', 'asc')->paginate(5);
         return view('postcodes.index')->with('postcodes', $postcodes);
     }
 
@@ -40,14 +40,14 @@ class PostcodeController extends Controller
     {
         // validate the form data
         $this->validate($request, [
-            'postcode' => 'required|max:255',
-            'country' => 'required'
+            'name' => 'required|max:255',
+            'country_id' => 'required'
         ]);
 
         // process the data and submit it
         $postcode = new Postcode();
-        $postcode->postcode = $request->postcode;
-        $postcode->country = $request->country;
+        $postcode->name = $request->name;
+        $postcode->country_id = $request->country_id;
 
         // if successful we want to redirect
         if ($postcode->save())
@@ -80,8 +80,13 @@ class PostcodeController extends Controller
      */
     public function edit($id)
     {
-        $postcode = Country::findOrFail($id);
-        return view('postcodes.edit')->with('postcode', $postcode);
+        $postcode = Postcode::findOrFail($id);
+        $countries = $this->getCountries();
+
+        return view('postcodes.edit')->with([
+            'countries' => $countries, 
+            'postcode' => $postcode
+        ]);
     }
 
     /**
@@ -95,13 +100,13 @@ class PostcodeController extends Controller
     {
         // validate the form data
         $this->validate($request, [
-            'postcode' => 'required|max:255',
-            'country' => 'required'
+            'name' => 'required|max:255',
+            'country_id' => 'required'
         ]);
 
         $postcode = Postcode::findOrFail($id);
-        $postcode->postcode = $request->postcode;
-        $postcode->country = $request->country;
+        $postcode->name = $request->name;
+        $postcode->country_id = $request->country_id;
 
         // if successful we want to redirect
         if ($postcode->update())

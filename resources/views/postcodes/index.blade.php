@@ -7,14 +7,14 @@
 
     <table>
       <thead>
-        <th>Name</th>
-        <th>Abbreviation</th>
+        <th>Postcode</th>
+        <th>Country</th>
       </thead>
       <tbody>
         @foreach ($postcodes as $postcode)
           <tr>
-            <td>{{ $postcode->postcode }}</td>
-            <td>{{ $postcode->country()->name }}</td>
+            <td>{{ $postcode->name }}</td>
+            <td>{{ $postcode->country->name }}</td>
             <td>
               <a class="btn btn-primary btn-sm" href="{{ route('postcodes.show', $postcode->id) }}">View</a>
             </td>
